@@ -1,0 +1,52 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Nambiq | Honest reviews. Better decisions.</title>
+<style>
+:root{--navy:#101b2b;--gold:#f2c66d;--paper:#f5f3ee;--ink:#182334;--muted:#697586}
+*{box-sizing:border-box}body{margin:0;background:var(--paper);color:var(--ink);font:16px/1.5 Arial,sans-serif}
+header{background:var(--navy);color:white;padding:26px max(6vw,20px) 58px}
+nav{display:flex;justify-content:space-between;align-items:center;max-width:1100px;margin:auto}
+.brand{font-weight:800;letter-spacing:.4px}.brand span{color:var(--gold)}
+.hero{max-width:1100px;margin:48px auto 0}.eyebrow{color:var(--gold);font-weight:bold;text-transform:uppercase;letter-spacing:2px;font-size:12px}
+h1{font-size:clamp(36px,6vw,60px);line-height:1.05;margin:12px 0;max-width:700px}
+.hero p{color:#d1d8e1;max-width:620px;font-size:18px}
+main{max-width:1100px;margin:-25px auto 60px;padding:0 20px}
+.search{background:white;padding:16px;border-radius:14px;box-shadow:0 8px 28px #101b2b18;display:flex;gap:12px}
+input{flex:1;min-width:0;border:1px solid #d9dee5;border-radius:9px;padding:13px;font-size:16px}
+section{margin-top:38px}.sectionhead{display:flex;justify-content:space-between;gap:12px;align-items:end;flex-wrap:wrap}
+h2{font-size:26px;margin:0}.sub{color:var(--muted);margin:5px 0 0}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(245px,1fr));gap:16px;margin-top:18px}
+.card{background:white;border:1px solid #e5e7eb;border-radius:14px;padding:18px}
+.card h3{margin:0 0 5px;font-size:19px}.area{color:var(--muted);font-size:14px}
+.status{display:inline-block;background:#fff3d8;color:#76520b;border-radius:20px;padding:4px 9px;font-size:12px;font-weight:bold;margin:13px 0}
+.facts{display:grid;grid-template-columns:1fr 1fr;gap:9px;margin:4px 0 14px}
+.fact{background:#f6f7f9;border-radius:8px;padding:9px;font-size:13px}.fact b{display:block;font-size:11px;color:var(--muted);text-transform:uppercase;letter-spacing:.5px}
+a{color:#805b13;font-weight:bold;text-decoration:none}.note{background:#fff;border-left:4px solid var(--gold);padding:16px 18px;border-radius:8px;color:#4c5665;margin-top:28px}
+footer{text-align:center;color:var(--muted);padding:24px;font-size:13px}
+@media(max-width:560px){.search{flex-direction:column}.search button{width:100%}}
+button{background:var(--gold);border:0;border-radius:9px;padding:13px 18px;font-weight:bold;cursor:pointer}
+</style>
+</head>
+<body>
+<header>
+<nav><div class="brand">NAMBIQ</div><div style="font-size:13px;color:#d1d8e1">TRICHY · PILOT</div></nav>
+<div class="hero"><div class="eyebrow">Honest reviews. Real experiences. Better decisions.</div><h1>Know what to expect before you go.</h1><p>Practical information about places worth visiting in Tiruchirappalli — starting with cinemas, and expanding to restaurants, attractions and family experiences.</p></div>
+</header>
+<main>
+<div class="search"><input id="search" placeholder="Search theatre or area…" aria-label="Search theatres"><button onclick="filterCards()">Find a theatre</button></div>
+<section><div class="sectionhead"><div><h2>Explore Trichy theatres</h2><p class="sub">An initial directory. Details are being verified.</p></div></div><div class="grid" id="list"></div></section>
+<div class="note"><b>Our trust promise</b><br>We will not guess or invent theatre facilities. Information stays “Not verified” until checked. Each detail will show when it was last verified and whether it came from a first-hand visit or a visitor report.</div>
+</main>
+<footer>NAMBIQ · Honest reviews. Real experiences. Better decisions. · Trichy pilot</footer>
+<script>
+const theatres=[
+["LA Cinema Sona Mina","Trichy"],["Megastar Cinemas","Trichy"],["LA Cinema Maris","Trichy"],["Ramba Theatre","Trichy"],["Cauvery Cinemas","Trichy"],["Shanthi Cinemas","Trichy"],["Mariyam Cinemas","Trichy"],["BHELEC Cinema","Trichy"]
+];
+function render(items){document.getElementById('list').innerHTML=items.map(([name,area])=>`<article class="card"><h3>${name}</h3><div class="area">${area}</div><div class="status">Directory listing · not yet reviewed</div><div class="facts"><div class="fact"><b>Parking</b>Not verified</div><div class="fact"><b>Payments</b>Not verified</div><div class="fact"><b>Food</b>Not verified</div><div class="fact"><b>Family comfort</b>Not verified</div></div><a target="_blank" rel="noopener" href="https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(name+' Trichy')}">Find on Google Maps ↗</a></article>`).join('')}
+function filterCards(){const q=document.getElementById('search').value.toLowerCase();render(theatres.filter(x=>x.join(' ').toLowerCase().includes(q)))}
+document.getElementById('search').addEventListener('input',filterCards);render(theatres);
+</script>
+</body></html>
